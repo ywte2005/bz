@@ -60,7 +60,6 @@
 			var a = lib.cache.get('category'),b = function(res){
 				var i = mui('#cate'),l = mui('#items');
 				res = JSON.parse(res),i[0].innerHTML = juicer(l[0].innerHTML,res),lib.cache.set('category',res);
-				alert(JSON.stringify(res));
 			};
 			a ? b(a) : lib.get('category',b);
 		},
