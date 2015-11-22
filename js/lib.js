@@ -57,7 +57,12 @@
 			
 		},
 		cate:function(){
-			
+			var a = lib.cache.get('category'),b = function(res){
+				var i = mui('#cate'),l = mui('#items');
+				res = JSON.parse(res),i[0].innerHTML = juicer(l[0].innerHTML,res),lib.cache.set('category',res);
+				alert(JSON.stringify(res));
+			};
+			a ? b(a) : lib.get('category',b);
 		},
 		dish:function(){
 //			var header = document.getElementById("header");
@@ -73,6 +78,17 @@
 					plus.webview.show(h);
 				});
 			});
+		},
+		cache:{
+			get:function(key){
+				return plus.storage.getItem(key);
+			},
+			set:function(key,value){
+				plus.storage.setItem(key, value);
+			},
+			remove:function(key){
+				plus.storage.removeItem(key);
+			}
 		},
 		get:function(cf,callback){
 			lib.ajax(lib.url(cf),function(res){

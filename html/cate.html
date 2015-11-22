@@ -12,30 +12,24 @@
 		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		<h1 class="mui-title">菜谱类别</h1>
 	</header>
-	<div class="mui-content" id="cate">
+	<div class="mui-content" id="cate"></div>
+	<script type="text/html" id="items">
 		<div class="mui-card">
 			<ul class="mui-table-view mui-table-view-chevron">
-				<li class="mui-table-view-cell"><a class="mui-navigate-right" href="dish.html" open-type="open">产品</a></li>
-				<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">方案</a>
+				{@each items as item,index}
+				<li class="mui-table-view-cell{@if item.children} mui-collapse{@/if}">
+					<a class="mui-navigate-right" href="{@if item.children}#{@else}dish.html{@/if}">${item.name}</a>
+					{@if item.children}
 					<ul class="mui-table-view mui-table-view-chevron">
-						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">PC方案</a>
-						</li>
-						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">手机方案</a>
-						</li>
-						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">TV方案</a>
-						</li>
+						{@each item.children as children}
+						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">${children.name}</a></li>
+						{@/each}
 					</ul>
+					{@/if}
 				</li>
-				<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">新闻</a>
-					<ul class="mui-table-view mui-table-view-chevron">
-						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">公司新闻</a>
-						</li>
-						<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">行业新闻</a>
-						</li>
-					</ul>
-				</li>
+				{@/each}
 			</ul>
 		</div>
-	</div>
+	</script>
 </body>
 </html>
